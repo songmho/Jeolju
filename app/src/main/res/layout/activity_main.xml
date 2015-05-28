@@ -1,4 +1,4 @@
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,4 +27,12 @@
             android:background="#ffffff">
         </LinearLayout>
     </android.support.v4.widget.DrawerLayout>
-  </LinearLayout>
+    <ImageButton
+        android:id="@+id/add"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/add"
+        android:layout_gravity="bottom|right"/>
+  </FrameLayout>

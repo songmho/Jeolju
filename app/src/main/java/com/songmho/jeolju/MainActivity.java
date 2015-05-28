@@ -1,6 +1,7 @@
 package com.songmho.jeolju;
 
 import android.content.res.Configuration;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,7 +13,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -24,6 +27,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF85E0FF));
 
         //객체 선언
         DrawerLayout drawerLayout=(DrawerLayout)findViewById(R.id.drawerlayout);
@@ -31,6 +35,9 @@ public class MainActivity extends ActionBarActivity {
         LinearLayout drawer=(LinearLayout)findViewById(R.id.drawer);
 
         ViewPager viewPager=(ViewPager)findViewById(R.id.viewpager);
+
+        ImageButton add=(ImageButton)findViewById(R.id.add);
+
 
         //객체 사용
 
@@ -50,6 +57,15 @@ public class MainActivity extends ActionBarActivity {
 
         //뷰페이저
         viewPager.setAdapter(new viewpager_adapter(getSupportFragmentManager()));
+
+        //add 버튼
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast t=Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG);
+                t.show();
+            }
+        });
     }
 
     @Override
