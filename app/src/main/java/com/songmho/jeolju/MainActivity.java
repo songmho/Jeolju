@@ -31,7 +31,6 @@ public class MainActivity extends ActionBarActivity {
 
         //객체 선언
         DrawerLayout drawerLayout=(DrawerLayout)findViewById(R.id.drawerlayout);
-        LinearLayout container=(LinearLayout)findViewById(R.id.container);
         LinearLayout drawer=(LinearLayout)findViewById(R.id.drawer);
 
         ViewPager viewPager=(ViewPager)findViewById(R.id.viewpager);
@@ -95,9 +94,9 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+      /*  if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
         if(drawerToggle.onOptionsItemSelected(item))
             return true;
 

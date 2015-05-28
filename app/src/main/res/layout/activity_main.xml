@@ -8,16 +8,24 @@
         android:id="@+id/drawerlayout"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-        </LinearLayout>
+            <ImageButton
+                android:id="@+id/add"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/add"
+                android:layout_gravity="bottom|right"/>
+        </FrameLayout>
+
         <LinearLayout
             android:id="@+id/drawer"
             android:layout_width="250dp"
@@ -27,12 +35,4 @@
             android:background="#ffffff">
         </LinearLayout>
     </android.support.v4.widget.DrawerLayout>
-    <ImageButton
-        android:id="@+id/add"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/add"
-        android:layout_gravity="bottom|right"/>
   </FrameLayout>
