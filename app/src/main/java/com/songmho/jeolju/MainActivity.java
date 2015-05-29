@@ -1,11 +1,9 @@
 package com.songmho.jeolju;
 
+import android.animation.ObjectAnimator;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -13,8 +11,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
@@ -32,8 +32,7 @@ public class MainActivity extends ActionBarActivity {
         //객체 선언
         DrawerLayout drawerLayout=(DrawerLayout)findViewById(R.id.drawerlayout);
         LinearLayout drawer=(LinearLayout)findViewById(R.id.drawer);
-
-        ViewPager viewPager=(ViewPager)findViewById(R.id.viewpager);
+        final ProgressBar progressBar=(ProgressBar)findViewById(R.id.progressBar);
 
         ImageButton add=(ImageButton)findViewById(R.id.add);
 
@@ -54,15 +53,18 @@ public class MainActivity extends ActionBarActivity {
         };
         drawerLayout.setDrawerListener(drawerToggle);
 
-        //뷰페이저
-        viewPager.setAdapter(new viewpager_adapter(getSupportFragmentManager()));
-
+        //progress bar
         //add 버튼
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast t=Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG);
                 t.show();
+
+                ObjectAnimator animator=ObjectAnimator.ofInt(progressBar,"progress",1,500);
+                animator.setDuration(5000);
+                animator.setInterpolator(new DecelerateInterpolator());
+                animator.start();
             }
         });
     }
@@ -94,39 +96,9 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-      /*  if (id == R.id.action_settings) {
-            return true;
-        }*/
         if(drawerToggle.onOptionsItemSelected(item))
             return true;
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private class viewpager_adapter extends FragmentPagerAdapter {
-        @Override
-        public Fragment getItem(int position) {
-            if(position<0 || position>=MAX_PAGE)
-                return null;
-            switch (position){
-                case 0:
-                    cur_fragment=new DialogFragment();
-                    break;
-                case 1:
-                    cur_fragment=new ListFragment();
-                    break;
-
-            }
-            return cur_fragment;
-        }
-
-        @Override
-        public int getCount() {
-            return MAX_PAGE;
-        }
-
-        public viewpager_adapter(FragmentManager supportFragmentManager) {
-            super(supportFragmentManager);
-        }
     }
 }

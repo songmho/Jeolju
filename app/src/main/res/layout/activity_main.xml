@@ -12,10 +12,50 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+            <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_gravity="center"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:progressDrawable="@drawable/circular"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+                        <TextView
+                            android:layout_marginTop="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="100000원"
+                            android:gravity="center"
+                            android:textSize="35dp"/>
+                        <TextView
+                            android:layout_marginTop="25dp"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="목표 금액"
+                            android:textSize="15dp"/>
+
+                        <TextView
+                            android:id="@+id/text_cash"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="100000원"
+                            android:textSize="15dp"/>
+                    </LinearLayout>
+
+                </FrameLayout>
+            </LinearLayout>
+
             <ImageButton
                 android:id="@+id/add"
                 android:layout_width="50dp"
@@ -33,6 +73,21 @@
             android:layout_gravity="start"
             android:orientation="vertical"
             android:background="#ffffff">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/abc_action_bar_default_height_material"
+                android:background="#85E0FF"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="송명호"/>
+            </LinearLayout>
+          <!--  <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>-->
         </LinearLayout>
     </android.support.v4.widget.DrawerLayout>
   </FrameLayout>
