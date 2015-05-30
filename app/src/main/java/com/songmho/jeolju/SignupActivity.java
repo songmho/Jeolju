@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,24 +45,31 @@ public class SignupActivity extends ActionBarActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(email.length()!=0 && name.length()!=0 && password.length()!=0 && pass_check.length()!=0 &&(male.isChecked() || female.isChecked()) ) {
-                    if (!password.equals(pass_check))        //비밀번호가 같지 않을 때
-                        Toast.makeText(getApplicationContext(),"비밀번호가 같지 않습니다.",Toast.LENGTH_SHORT).show();
-                    else {
+                if(String.valueOf(email.getText()).length()!=0 && String.valueOf(name.getText()).length()!=0 &&
+                        String.valueOf(password.getText()).length()!=0 && String.valueOf(pass_check.getText()).length()!=0
+                        &&(male.isChecked() || female.isChecked()) ) {
+                    cur_user.setUsername(String.valueOf(email.getText()));
+                    cur_user.setEmail(String.valueOf(email.getText()));
+                    cur_user.put("auditk", Integer.valueOf(0));
+                    if (male.isChecked())
+                        cur_user.put("ismale", true);
+                    else
+                        cur_user.put("ismale", false);
+                    cur_user.put("name", String.valueOf(name.getText()));
+                    if (!(String.valueOf(password.getText()).equals(String.valueOf(pass_check.getText()))))        //비밀번호가 같지 않을 때
+                    {
+                        Toast.makeText(getApplicationContext(), "비밀번호가 같지 않습니다.", Toast.LENGTH_SHORT).show();
+                        Log.d("dfdfd", String.valueOf(email.getText()));
+                        Log.d("dfdfd", String.valueOf(pass_check.getText()));
+                        Log.d("dfdfdfd",String.valueOf(password.getText()));
+                    }
+                     else {
+                        cur_user.setPassword(String.valueOf(password.getText()));
                         cur_user.signUpInBackground(new SignUpCallback() {
                             @Override
                             public void done(ParseException e) {
                                 if (e == null) {
                                     Toast.makeText(getApplicationContext(),"가입 되었습니다.",Toast.LENGTH_LONG).show();
-                                    cur_user.setUsername(String.valueOf(email.getText()));
-                                    cur_user.setEmail(String.valueOf(email.getText()));
-                                    cur_user.setPassword(String.valueOf(password.getText()));
-                                    if (male.isChecked())
-                                        cur_user.put("ismale", true);
-                                    else
-                                        cur_user.put("ismale", false);
-                                    cur_user.put("name", String.valueOf(name.getText()));
-
                                     String email_str=String.valueOf(email.getText());
                                     String[] classname=email_str.split("\\@");
                                     ParseObject object=ParseObject.create(classname[0]);
@@ -76,6 +84,8 @@ public class SignupActivity extends ActionBarActivity {
                                     startActivity(new Intent(SignupActivity.this,MainActivity.class));
                                     finish();
                                 }
+                                else
+                                    Toast.makeText(getApplicationContext(),"dfdfd",Toast.LENGTH_SHORT).show();
                             }
                         });
 

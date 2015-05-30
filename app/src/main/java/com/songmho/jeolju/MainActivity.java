@@ -1,6 +1,8 @@
 package com.songmho.jeolju;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
@@ -17,6 +19,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -37,6 +40,9 @@ public class MainActivity extends ActionBarActivity {
         RecyclerView.LayoutManager layoutManager;
         RecyclerView.Adapter adapter;
         ImageButton add=(ImageButton)findViewById(R.id.add);
+        TextView name=(TextView)findViewById(R.id.name);
+
+        //변수 선언
         String[] drawer_list_list= new String[]{"내기록","AUDIT-K","설정","절주앱"};
 
 
@@ -56,6 +62,9 @@ public class MainActivity extends ActionBarActivity {
         };
         drawerLayout.setDrawerListener(drawerToggle);
 
+        SharedPreferences pref=getSharedPreferences("login_info",MODE_PRIVATE);
+        name.setText(pref.getString("name",""));
+
         //progress bar
 
         //drawer
@@ -69,13 +78,7 @@ public class MainActivity extends ActionBarActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast t=Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG);
-                t.show();
-
-                ObjectAnimator animator=ObjectAnimator.ofInt(progressBar,"progress",1,500);
-                animator.setDuration(5000);
-                animator.setInterpolator(new DecelerateInterpolator());
-                animator.start();
+                startActivity(new Intent(MainActivity.this,AddActivity.class));
             }
         });
     }
