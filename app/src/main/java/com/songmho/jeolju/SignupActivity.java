@@ -1,11 +1,22 @@
 package com.songmho.jeolju;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Toast;
+
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 /**
  * Created by songmho on 2015-05-29.
@@ -25,6 +36,54 @@ public class SignupActivity extends ActionBarActivity {
         final EditText name=(EditText)findViewById(R.id.name);
         final EditText password=(EditText)findViewById(R.id.password);
         final EditText pass_check=(EditText)findViewById(R.id.pass_check);
+        final RadioButton male=(RadioButton)findViewById(R.id.male);
+        final RadioButton female=(RadioButton)findViewById(R.id.female);
         Button signup=(Button)findViewById(R.id.signup_button);
+        final ParseUser cur_user=new ParseUser();
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(email.length()!=0 && name.length()!=0 && password.length()!=0 && pass_check.length()!=0 &&(male.isChecked() || female.isChecked()) ) {
+                    if (!password.equals(pass_check))        //비밀번호가 같지 않을 때
+                        Toast.makeText(getApplicationContext(),"비밀번호가 같지 않습니다.",Toast.LENGTH_SHORT).show();
+                    else {
+                        cur_user.signUpInBackground(new SignUpCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e == null) {
+                                    Toast.makeText(getApplicationContext(),"가입 되었습니다.",Toast.LENGTH_LONG).show();
+                                    cur_user.setUsername(String.valueOf(email.getText()));
+                                    cur_user.setEmail(String.valueOf(email.getText()));
+                                    cur_user.setPassword(String.valueOf(password.getText()));
+                                    if (male.isChecked())
+                                        cur_user.put("ismale", true);
+                                    else
+                                        cur_user.put("ismale", false);
+                                    cur_user.put("name", String.valueOf(name.getText()));
+
+                                    String email_str=String.valueOf(email.getText());
+                                    String[] classname=email_str.split("\\@");
+                                    ParseObject object=ParseObject.create(classname[0]);
+                                    object.saveInBackground();
+                                    SharedPreferences pref_login=getSharedPreferences("login_info", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor=pref_login.edit();
+                                    editor.putString("email",email_str);
+                                    editor.putString("password",String.valueOf(password.getText()));
+                                    editor.putString("classname",classname[0]);
+                                    editor.putString("name", String.valueOf(name.getText()));
+                                    editor.commit();
+                                    startActivity(new Intent(SignupActivity.this,MainActivity.class));
+                                    finish();
+                                }
+                            }
+                        });
+
+                    }
+                }
+                else
+                    Toast.makeText(getApplicationContext(),"모든 항목을 채워주세요.",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

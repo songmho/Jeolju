@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <android.support.v4.widget.DrawerLayout
+        android:fitsSystemWindows="true"
         android:id="@+id/drawerlayout"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
@@ -75,19 +76,21 @@
             android:background="#ffffff">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/abc_action_bar_default_height_material"
+                android:layout_height="70dp"
                 android:background="#85E0FF"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_gravity="center"
                     android:id="@+id/name"
+                    android:layout_marginLeft="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="송명호"/>
             </LinearLayout>
-          <!--  <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>-->
+           <android.support.v7.widget.RecyclerView
+               android:id="@+id/recyclerview"
+               android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </android.support.v4.widget.DrawerLayout>
   </FrameLayout>
