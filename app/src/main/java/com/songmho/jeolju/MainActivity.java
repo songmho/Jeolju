@@ -1,11 +1,9 @@
 package com.songmho.jeolju;
 
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -15,15 +13,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.parse.ParseUser;
 
 public class MainActivity extends ActionBarActivity {
+    TextView cur_money;
+    TextView goal_money;
     ActionBarDrawerToggle drawerToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +34,23 @@ public class MainActivity extends ActionBarActivity {
         //객체 선언
         DrawerLayout drawerLayout=(DrawerLayout)findViewById(R.id.drawerlayout);
         LinearLayout drawer=(LinearLayout)findViewById(R.id.drawer);
-        final ProgressBar progressBar=(ProgressBar)findViewById(R.id.progressBar);
+       // final ProgressBar progressBar=(ProgressBar)findViewById(R.id.progressBar);
         RecyclerView recyclerView=(RecyclerView)findViewById(R.id.recyclerview);
         RecyclerView.LayoutManager layoutManager;
         RecyclerView.Adapter adapter;
         ImageButton add=(ImageButton)findViewById(R.id.add);
         TextView name=(TextView)findViewById(R.id.name);
+        cur_money=(TextView)findViewById(R.id.cur_money);
+        goal_money=(TextView)findViewById(R.id.goal_money);
 
         //변수 선언
         String[] drawer_list_list= new String[]{"내기록","AUDIT-K","설정","절주앱"};
 
 
         //객체 사용
+
+        //money
+            onResume();
 
         //드로어
         drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close){
@@ -81,6 +85,15 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(new Intent(MainActivity.this,AddActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        int cur_money_int= ParseUser.getCurrentUser().getInt("cur_money");
+        int goal_money_int=ParseUser.getCurrentUser().getInt("goal_money");
+        cur_money.setText(""+cur_money_int+"원");
+        goal_money.setText("" + goal_money_int + "원");
     }
 
     @Override

@@ -1,23 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="top|center"
+    android:layout_marginTop="30dp">
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="금액 : "/>
+            android:text="맥  주  : "/>
         <EditText
-            android:id="@+id/insert_money"
-            android:layout_width="100dp"
+            android:id="@+id/beer"
+            android:layout_width="70dp"
+            android:inputType="number"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:text="0"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="병 "/>
+        <EditText
+            android:id="@+id/beer_money"
+            android:layout_width="70dp"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:text="0"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="원"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="소  주  : "/>
+        <EditText
+            android:id="@+id/soju"
+            android:layout_width="70dp"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:text="0"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="병 "/>
+        <EditText
+            android:id="@+id/soju_money"
+            android:layout_width="70dp"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:text="0"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="원"/></LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="칵테일  : "/>
+        <EditText
+            android:id="@+id/cock"
+            android:layout_width="70dp"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:text="0"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="병 "/>
+        <EditText
+            android:id="@+id/cock_money"
+            android:layout_width="70dp"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:text="0"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="원"/></LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="양  주  : "/>
+        <EditText
+            android:id="@+id/etc"
+            android:layout_width="70dp"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:text="0"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="병 "/>
+        <EditText
+            android:id="@+id/etc_money"
+            android:layout_width="70dp"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:text="0"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="원"/></LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="     .     .    "
+            android:layout_marginRight="10dp" />
+        <Button
+        android:id="@+id/bt_date"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Pick date"/>
+    </LinearLayout>
     <Button
+        android:layout_marginTop="10dp"
         android:id="@+id/add"
         android:layout_width="80dp"
         android:layout_height="wrap_content"

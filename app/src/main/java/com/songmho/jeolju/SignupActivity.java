@@ -56,6 +56,8 @@ public class SignupActivity extends ActionBarActivity {
                     else
                         cur_user.put("ismale", false);
                     cur_user.put("name", String.valueOf(name.getText()));
+                    cur_user.put("cur_money",0);
+                    cur_user.put("goal_money",100000);
                     if (!(String.valueOf(password.getText()).equals(String.valueOf(pass_check.getText()))))        //비밀번호가 같지 않을 때
                     {
                         Toast.makeText(getApplicationContext(), "비밀번호가 같지 않습니다.", Toast.LENGTH_SHORT).show();
